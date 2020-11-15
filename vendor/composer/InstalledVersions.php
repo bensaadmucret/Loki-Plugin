@@ -14,24 +14,24 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
-    'name' => 'lokin/loki-plugin',
+    'reference' => '38966373b0ef4b3c8d751f4576b26c065e0c2356',
+    'name' => 'ben/loki-plugin',
   ),
   'versions' => 
   array (
-    'lokin/loki-plugin' => 
+    'ben/loki-plugin' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => '38966373b0ef4b3c8d751f4576b26c065e0c2356',
     ),
   ),
 );
