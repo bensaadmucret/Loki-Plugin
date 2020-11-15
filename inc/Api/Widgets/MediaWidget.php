@@ -21,8 +21,8 @@ class MediaWidget extends WP_Widget
 
 	function __construct() {
 
-		$this->widget_ID = 'alecaddd_media_widget';
-		$this->widget_name = 'Alecaddd Media Widget';
+		$this->widget_ID = 'loki_media_widget';
+		$this->widget_name = 'loki Media Widget';
 
 		$this->widget_options = array(
 			'classname' => $this->widget_ID,

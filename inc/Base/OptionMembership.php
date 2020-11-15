@@ -14,10 +14,10 @@ class OptionMembership
     function membership_register_options_submenu_menu() {
 
         $cmb_options = new_cmb2_box( array(
-            'id'           => 'alecaddd_membership',
+            'id'           => 'loki_membership',
             'object_types' => array( 'options-page' ),
-            'option_key'      => 'alecaddd_membership',
-            'parent_slug'     => 'alecaddd_plugin', 
+            'option_key'      => 'loki_membership',
+            'parent_slug'     => 'loki_plugin', 
            
         ) );
         $cmb_options->add_field( array(

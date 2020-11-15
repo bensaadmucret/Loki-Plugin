@@ -42,18 +42,18 @@ if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
 /**
  * The code that runs during plugin activation
  */
-function activate_alecaddd_plugin() {
+function activate_loki_plugin() {
 	Inc\Base\Activate::activate();
 }
-register_activation_hook( __FILE__, 'activate_alecaddd_plugin' );
+register_activation_hook( __FILE__, 'activate_loki_plugin' );
 
 /**
  * The code that runs during plugin deactivation
  */
-function deactivate_alecaddd_plugin() {
+function deactivate_loki_plugin() {
 	Inc\Base\Deactivate::deactivate();
 }
-register_deactivation_hook( __FILE__, 'deactivate_alecaddd_plugin' );
+register_deactivation_hook( __FILE__, 'deactivate_loki_plugin' );
 
 /**
  * Initialize all the core classes of the plugin
@@ -68,11 +68,11 @@ function yourprefix_register_main_options_metabox() {
 	 * Registers main options page menu item and form.
 	 */
 	$args = array(
-		'id'           => 'alecaddd_chat',
+		'id'           => 'loki_chat',
 		//'title'        => 'Main Options',
 		'object_types' => array( 'options-page' ),
-		'option_key'   => 'alecaddd_chat',
-		'parent_slug'     => 'alecaddd_plugin',
+		'option_key'   => 'loki_chat',
+		'parent_slug'     => 'loki_plugin',
 		'tab_group'    => 'yourprefix_main_options',
 		'tab_title'    => 'Main',
 	);
@@ -105,7 +105,7 @@ function yourprefix_register_main_options_metabox() {
 		//'menu_title'   => 'Secondary Options', // Use menu title, & not title to hide main h2.
 		'object_types' => array( 'options-page' ),
 		'option_key'   => 'yourprefix_secondary_options',
-		'parent_slug'  => 'alecaddd_plugin',
+		'parent_slug'  => 'loki_plugin',
 		'tab_group'    => 'yourprefix_main_options',
 		'tab_title'    => 'Secondary',
 	);
@@ -137,7 +137,7 @@ function yourprefix_register_main_options_metabox() {
 		//'menu_title'   => 'Tertiary Options', // Use menu title, & not title to hide main h2.
 		'object_types' => array( 'options-page' ),
 		'option_key'   => 'yourprefix_tertiary_options',
-		'parent_slug'  => 'alecaddd_plugin',
+		'parent_slug'  => 'loki_plugin',
 		'tab_group'    => 'yourprefix_main_options',
 		'tab_title'    => 'Tertiary',
 	);

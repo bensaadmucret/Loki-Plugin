@@ -35,7 +35,7 @@ class BaseController
 
 	public function activated( string $key )
 	{
-		$option = get_option( 'alecaddd_plugin' );
+		$option = get_option( 'loki_plugin' );
 
 		return isset( $option[ $key ] ) ? $option[ $key ] : false;
 	}

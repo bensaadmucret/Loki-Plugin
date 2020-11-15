@@ -40,10 +40,10 @@ class Dashboard extends BaseController
 	{
 		$this->pages = array(
 			array(
-				'page_title' => 'Alecaddd Plugin', 
-				'menu_title' => 'Alecaddd', 
+				'page_title' => 'loki Plugin', 
+				'menu_title' => 'loki', 
 				'capability' => 'manage_options', 
-				'menu_slug' => 'alecaddd_plugin', 
+				'menu_slug' => 'loki_plugin', 
 				'callback' => array( $this->callbacks, 'adminDashboard' ), 
 				'icon_url' => 'dashicons-store', 
 				'position' => 110
@@ -55,8 +55,8 @@ class Dashboard extends BaseController
 	{
 		$args = array(
 			array(
-				'option_group' => 'alecaddd_plugin_settings',
-				'option_name' => 'alecaddd_plugin',
+				'option_group' => 'loki_plugin_settings',
+				'option_name' => 'loki_plugin',
 				'callback' => array( $this->callbacks_mngr, 'checkboxSanitize' )
 			)
 		);
@@ -68,10 +68,10 @@ class Dashboard extends BaseController
 	{
 		$args = array(
 			array(
-				'id' => 'alecaddd_admin_index',
+				'id' => 'loki_admin_index',
 				'title' => 'Settings Manager',
 				'callback' => array( $this->callbacks_mngr, 'adminSectionManager' ),
-				'page' => 'alecaddd_plugin'
+				'page' => 'loki_plugin'
 			)
 		);
 
@@ -87,10 +87,10 @@ class Dashboard extends BaseController
 				'id' => $key,
 				'title' => $value,
 				'callback' => array( $this->callbacks_mngr, 'checkboxField' ),
-				'page' => 'alecaddd_plugin',
-				'section' => 'alecaddd_admin_index',
+				'page' => 'loki_plugin',
+				'section' => 'loki_admin_index',
 				'args' => array(
-					'option_name' => 'alecaddd_plugin',
+					'option_name' => 'loki_plugin',
 					'label_for' => $key,
 					'class' => 'ui-toggle'
 				)

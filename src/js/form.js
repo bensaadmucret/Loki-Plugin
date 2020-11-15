@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(e) {
-	let testimonialForm = document.getElementById('alecaddd-testimonial-form');
+	let testimonialForm = document.getElementById('loki-testimonial-form');
 
 	testimonialForm.addEventListener('submit', (e) => {
 		e.preventDefault();

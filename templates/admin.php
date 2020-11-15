@@ -1,5 +1,5 @@
 <div class="wrap">
-	<h1>Alecaddd Plugin</h1>
+	<h1>loki Plugin</h1>
 	<?php settings_errors(); ?>
 
 	<ul class="nav nav-tabs">
@@ -13,8 +13,8 @@
 
 			<form method="post" action="options.php">
 				<?php 
-					settings_fields( 'alecaddd_plugin_settings' );
-					do_settings_sections( 'alecaddd_plugin' );
+					settings_fields( 'loki_plugin_settings' );
+					do_settings_sections( 'loki_plugin' );
 					submit_button();
 				?>
 			</form>

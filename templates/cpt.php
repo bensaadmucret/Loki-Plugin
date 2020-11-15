@@ -18,7 +18,7 @@
 			<h3>Manage Your Custom Post Types</h3>
 
 			<?php 
-				$options = get_option( 'alecaddd_plugin_cpt' ) ?: array();
+				$options = get_option( 'loki_plugin_cpt' ) ?: array();
 
 				echo '<table class="cpt-table"><tr><th>ID</th><th>Singular Name</th><th>Plural Name</th><th class="text-center">Public</th><th class="text-center">Archive</th><th class="text-center">Actions</th></tr>';
 
@@ -34,7 +34,7 @@
 					echo '</form> ';
 
 					echo '<form method="post" action="options.php" class="inline-block">';
-					settings_fields( 'alecaddd_plugin_cpt_settings' );
+					settings_fields( 'loki_plugin_cpt_settings' );
 					echo '<input type="hidden" name="remove" value="' . $option['post_type'] . '">';
 					submit_button( 'Delete', 'delete small', 'submit', false, array(
 						'onclick' => 'return confirm("Are you sure you want to delete this Custom Post Type? The data associated with it will not be deleted.");'
@@ -50,8 +50,8 @@
 		<div id="tab-2" class="tab-pane <?php echo isset($_POST["edit_post"]) ? 'active' : '' ?>">
 			<form method="post" action="options.php">
 				<?php 
-					settings_fields( 'alecaddd_plugin_cpt_settings' );
-					do_settings_sections( 'alecaddd_cpt' );
+					settings_fields( 'loki_plugin_cpt_settings' );
+					do_settings_sections( 'loki_cpt' );
 					submit_button();
 				?>
 			</form>

@@ -55,11 +55,11 @@ class CustomPostTypeController extends BaseController
 	{
 		$this->subpages = array(
 			array(
-				'parent_slug' => 'alecaddd_plugin', 
+				'parent_slug' => 'loki_plugin', 
 				'page_title' => 'Custom Post Types', 
 				'menu_title' => 'CPT Manager', 
 				'capability' => 'manage_options', 
-				'menu_slug' => 'alecaddd_cpt', 
+				'menu_slug' => 'loki_cpt', 
 				'callback' => array( $this->callbacks, 'adminCpt' )
 			)
 		);
@@ -69,8 +69,8 @@ class CustomPostTypeController extends BaseController
 	{
 		$args = array(
 			array(
-				'option_group' => 'alecaddd_plugin_cpt_settings',
-				'option_name' => 'alecaddd_plugin_cpt',
+				'option_group' => 'loki_plugin_cpt_settings',
+				'option_name' => 'loki_plugin_cpt',
 				'callback' => array( $this->cpt_callbacks, 'cptSanitize' )
 			)
 		);
@@ -82,10 +82,10 @@ class CustomPostTypeController extends BaseController
 	{
 		$args = array(
 			array(
-				'id' => 'alecaddd_cpt_index',
+				'id' => 'loki_cpt_index',
 				'title' => 'Custom Post Type Manager',
 				'callback' => array( $this->cpt_callbacks, 'cptSectionManager' ),
-				'page' => 'alecaddd_cpt'
+				'page' => 'loki_cpt'
 			)
 		);
 
@@ -99,10 +99,10 @@ class CustomPostTypeController extends BaseController
 				'id' => 'post_type',
 				'title' => 'Custom Post Type ID',
 				'callback' => array( $this->cpt_callbacks, 'textField' ),
-				'page' => 'alecaddd_cpt',
-				'section' => 'alecaddd_cpt_index',
+				'page' => 'loki_cpt',
+				'section' => 'loki_cpt_index',
 				'args' => array(
-					'option_name' => 'alecaddd_plugin_cpt',
+					'option_name' => 'loki_plugin_cpt',
 					'label_for' => 'post_type',
 					'placeholder' => 'eg. product',
 					'array' => 'post_type'
@@ -112,10 +112,10 @@ class CustomPostTypeController extends BaseController
 				'id' => 'singular_name',
 				'title' => 'Singular Name',
 				'callback' => array( $this->cpt_callbacks, 'textField' ),
-				'page' => 'alecaddd_cpt',
-				'section' => 'alecaddd_cpt_index',
+				'page' => 'loki_cpt',
+				'section' => 'loki_cpt_index',
 				'args' => array(
-					'option_name' => 'alecaddd_plugin_cpt',
+					'option_name' => 'loki_plugin_cpt',
 					'label_for' => 'singular_name',
 					'placeholder' => 'eg. Product',
 					'array' => 'post_type'
@@ -125,10 +125,10 @@ class CustomPostTypeController extends BaseController
 				'id' => 'plural_name',
 				'title' => 'Plural Name',
 				'callback' => array( $this->cpt_callbacks, 'textField' ),
-				'page' => 'alecaddd_cpt',
-				'section' => 'alecaddd_cpt_index',
+				'page' => 'loki_cpt',
+				'section' => 'loki_cpt_index',
 				'args' => array(
-					'option_name' => 'alecaddd_plugin_cpt',
+					'option_name' => 'loki_plugin_cpt',
 					'label_for' => 'plural_name',
 					'placeholder' => 'eg. Products',
 					'array' => 'post_type'
@@ -138,10 +138,10 @@ class CustomPostTypeController extends BaseController
 				'id' => 'public',
 				'title' => 'Public',
 				'callback' => array( $this->cpt_callbacks, 'checkboxField' ),
-				'page' => 'alecaddd_cpt',
-				'section' => 'alecaddd_cpt_index',
+				'page' => 'loki_cpt',
+				'section' => 'loki_cpt_index',
 				'args' => array(
-					'option_name' => 'alecaddd_plugin_cpt',
+					'option_name' => 'loki_plugin_cpt',
 					'label_for' => 'public',
 					'class' => 'ui-toggle',
 					'array' => 'post_type'
@@ -151,10 +151,10 @@ class CustomPostTypeController extends BaseController
 				'id' => 'has_archive',
 				'title' => 'Archive',
 				'callback' => array( $this->cpt_callbacks, 'checkboxField' ),
-				'page' => 'alecaddd_cpt',
-				'section' => 'alecaddd_cpt_index',
+				'page' => 'loki_cpt',
+				'section' => 'loki_cpt_index',
 				'args' => array(
-					'option_name' => 'alecaddd_plugin_cpt',
+					'option_name' => 'loki_plugin_cpt',
 					'label_for' => 'has_archive',
 					'class' => 'ui-toggle',
 					'array' => 'post_type'
@@ -167,7 +167,7 @@ class CustomPostTypeController extends BaseController
 
 	public function storeCustomPostTypes()
 	{
-		$options = get_option( 'alecaddd_plugin_cpt' ) ?: array();
+		$options = get_option( 'loki_plugin_cpt' ) ?: array();
 
 		foreach ($options as $option) {
 

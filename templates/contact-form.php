@@ -1,4 +1,4 @@
-<form id="alecaddd-testimonial-form" action="#" method="post" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
+<form id="loki-testimonial-form" action="#" method="post" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
 
 	<div class="field-container">
 		<input type="text" class="field-input" placeholder="Your Name" id="name" name="name" required>

@@ -12,7 +12,7 @@ class TaxonomyCallbacks
 
 	public function taxSanitize( $input )
 	{
-		$output = get_option('alecaddd_plugin_tax');
+		$output = get_option('loki_plugin_tax');
 
 		if ( isset($_POST["remove"]) ) {
 			unset($output[$_POST["remove"]]);

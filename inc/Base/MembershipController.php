@@ -34,11 +34,11 @@ class MembershipController extends BaseController
 	{
 		$this->subpages = array(
 			array(
-				'parent_slug' => 'alecaddd_plugin', 
+				'parent_slug' => 'loki_plugin', 
 				'page_title' => 'Membership Manager', 
 				'menu_title' => 'Membership Manager', 
 				'capability' => 'manage_options', 
-				'menu_slug' => 'alecaddd_membership', 
+				'menu_slug' => 'loki_membership', 
 				'callback' => array( $this->callbacks, 'adminMembership' )
 			)
 		);

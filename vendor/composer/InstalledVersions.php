@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '38966373b0ef4b3c8d751f4576b26c065e0c2356',
+    'reference' => 'a5dad30429d57c43f4ffdbb2557e624d0de27d28',
     'name' => 'ben/loki-plugin',
   ),
   'versions' => 
@@ -31,7 +31,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '38966373b0ef4b3c8d751f4576b26c065e0c2356',
+      'reference' => 'a5dad30429d57c43f4ffdbb2557e624d0de27d28',
     ),
   ),
 );

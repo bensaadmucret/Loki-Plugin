@@ -34,11 +34,11 @@ class GalleryController extends BaseController
 	{
 		$this->subpages = array(
 			array(
-				'parent_slug' => 'alecaddd_plugin', 
+				'parent_slug' => 'loki_plugin', 
 				'page_title' => 'Gallery Manager', 
 				'menu_title' => 'Gallery Manager', 
 				'capability' => 'manage_options', 
-				'menu_slug' => 'alecaddd_gallery', 
+				'menu_slug' => 'loki_gallery', 
 				'callback' => array( $this->callbacks, 'adminGallery' )
 			)
 		);

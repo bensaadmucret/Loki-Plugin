@@ -18,7 +18,7 @@
 			<h3>Manage Your Custom Taxonomies</h3>
 
 			<?php 
-				$options = get_option( 'alecaddd_plugin_tax' ) ?: array();
+				$options = get_option( 'loki_plugin_tax' ) ?: array();
 
 				echo '<table class="cpt-table"><tr><th>ID</th><th>Singular Name</th><th class="text-center">Hierarchical</th><th class="text-center">Actions</th></tr>';
 
@@ -33,7 +33,7 @@
 					echo '</form> ';
 
 					echo '<form method="post" action="options.php" class="inline-block">';
-					settings_fields( 'alecaddd_plugin_tax_settings' );
+					settings_fields( 'loki_plugin_tax_settings' );
 					echo '<input type="hidden" name="remove" value="' . $option['taxonomy'] . '">';
 					submit_button( 'Delete', 'delete small', 'submit', false, array(
 						'onclick' => 'return confirm("Are you sure you want to delete this Custom Taxonomy? The data associated with it will not be deleted.");'
@@ -49,8 +49,8 @@
 		<div id="tab-2" class="tab-pane <?php echo isset($_POST["edit_taxonomy"]) ? 'active' : '' ?>">
 			<form method="post" action="options.php">
 				<?php 
-					settings_fields( 'alecaddd_plugin_tax_settings' );
-					do_settings_sections( 'alecaddd_taxonomy' );
+					settings_fields( 'loki_plugin_tax_settings' );
+					do_settings_sections( 'loki_taxonomy' );
 					submit_button();
 				?>
 			</form>

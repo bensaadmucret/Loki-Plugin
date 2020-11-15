@@ -55,11 +55,11 @@ class CustomTaxonomyController extends BaseController
 	{
 		$this->subpages = array(
 			array(
-				'parent_slug' => 'alecaddd_plugin', 
+				'parent_slug' => 'loki_plugin', 
 				'page_title' => 'Custom Taxonomies', 
 				'menu_title' => 'Taxonomy Manager', 
 				'capability' => 'manage_options', 
-				'menu_slug' => 'alecaddd_taxonomy', 
+				'menu_slug' => 'loki_taxonomy', 
 				'callback' => array( $this->callbacks, 'adminTaxonomy' )
 			)
 		);
@@ -69,8 +69,8 @@ class CustomTaxonomyController extends BaseController
 	{
 		$args = array(
 			array(
-				'option_group' => 'alecaddd_plugin_tax_settings',
-				'option_name' => 'alecaddd_plugin_tax',
+				'option_group' => 'loki_plugin_tax_settings',
+				'option_name' => 'loki_plugin_tax',
 				'callback' => array($this->tax_callbacks, 'taxSanitize')
 			)
 		);
@@ -82,10 +82,10 @@ class CustomTaxonomyController extends BaseController
 	{
 		$args = array(
 			array(
-				'id' => 'alecaddd_tax_index',
+				'id' => 'loki_tax_index',
 				'title' => 'Custom Taxonomy Manager',
 				'callback' => array($this->tax_callbacks, 'taxSectionManager'),
-				'page' => 'alecaddd_taxonomy'
+				'page' => 'loki_taxonomy'
 			)
 		);
 
@@ -99,10 +99,10 @@ class CustomTaxonomyController extends BaseController
 				'id' => 'taxonomy',
 				'title' => 'Custom Taxonomy ID',
 				'callback' => array($this->tax_callbacks, 'textField'),
-				'page' => 'alecaddd_taxonomy',
-				'section' => 'alecaddd_tax_index',
+				'page' => 'loki_taxonomy',
+				'section' => 'loki_tax_index',
 				'args' => array(
-					'option_name' => 'alecaddd_plugin_tax',
+					'option_name' => 'loki_plugin_tax',
 					'label_for' => 'taxonomy',
 					'placeholder' => 'eg. genre',
 					'array' => 'taxonomy'
@@ -112,10 +112,10 @@ class CustomTaxonomyController extends BaseController
 				'id' => 'singular_name',
 				'title' => 'Singular Name',
 				'callback' => array( $this->tax_callbacks, 'textField' ),
-				'page' => 'alecaddd_taxonomy',
-				'section' => 'alecaddd_tax_index',
+				'page' => 'loki_taxonomy',
+				'section' => 'loki_tax_index',
 				'args' => array(
-					'option_name' => 'alecaddd_plugin_tax',
+					'option_name' => 'loki_plugin_tax',
 					'label_for' => 'singular_name',
 					'placeholder' => 'eg. Genre',
 					'array' => 'taxonomy'
@@ -125,10 +125,10 @@ class CustomTaxonomyController extends BaseController
 				'id' => 'hierarchical',
 				'title' => 'Hierarchical',
 				'callback' => array( $this->tax_callbacks, 'checkboxField' ),
-				'page' => 'alecaddd_taxonomy',
-				'section' => 'alecaddd_tax_index',
+				'page' => 'loki_taxonomy',
+				'section' => 'loki_tax_index',
 				'args' => array(
-					'option_name' => 'alecaddd_plugin_tax',
+					'option_name' => 'loki_plugin_tax',
 					'label_for' => 'hierarchical',
 					'class' => 'ui-toggle',
 					'array' => 'taxonomy'
@@ -138,10 +138,10 @@ class CustomTaxonomyController extends BaseController
 				'id' => 'objects',
 				'title' => 'Post Types',
 				'callback' => array( $this->tax_callbacks, 'checkboxPostTypesField' ),
-				'page' => 'alecaddd_taxonomy',
-				'section' => 'alecaddd_tax_index',
+				'page' => 'loki_taxonomy',
+				'section' => 'loki_tax_index',
 				'args' => array(
-					'option_name' => 'alecaddd_plugin_tax',
+					'option_name' => 'loki_plugin_tax',
 					'label_for' => 'objects',
 					'class' => 'ui-toggle',
 					'array' => 'taxonomy'
@@ -154,7 +154,7 @@ class CustomTaxonomyController extends BaseController
 
 	public function storeCustomTaxonomies()
 	{
-		$options = get_option( 'alecaddd_plugin_tax' ) ?: array();
+		$options = get_option( 'loki_plugin_tax' ) ?: array();
 
 		foreach ($options as $option) {
 			$labels = array(

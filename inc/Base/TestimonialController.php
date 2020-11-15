@@ -64,7 +64,7 @@ class TestimonialController extends BaseController
 			'post_status' => 'publish',
 			'post_type' => 'testimonial',
 			'meta_input' => array(
-				'_alecaddd_testimonial_key' => $data
+				'_loki_testimonial_key' => $data
 			)
 		);
 
@@ -113,7 +113,7 @@ class TestimonialController extends BaseController
 				'page_title' => 'Shortcodes',
 				'menu_title' => 'Shortcodes',
 				'capability' => 'manage_options',
-				'menu_slug' => 'alecaddd_testimonial_shortcode',
+				'menu_slug' => 'loki_testimonial_shortcode',
 				'callback' => array( $this->callbacks, 'shortcodePage' )
 			)
 		);
@@ -156,35 +156,35 @@ class TestimonialController extends BaseController
 
 	public function render_features_box($post)
 	{
-		wp_nonce_field( 'alecaddd_testimonial', 'alecaddd_testimonial_nonce' );
+		wp_nonce_field( 'loki_testimonial', 'loki_testimonial_nonce' );
 
-		$data = get_post_meta( $post->ID, '_alecaddd_testimonial_key', true );
+		$data = get_post_meta( $post->ID, '_loki_testimonial_key', true );
 		$name = isset($data['name']) ? $data['name'] : '';
 		$email = isset($data['email']) ? $data['email'] : '';
 		$approved = isset($data['approved']) ? $data['approved'] : false;
 		$featured = isset($data['featured']) ? $data['featured'] : false;
 		?>
 		<p>
-			<label class="meta-label" for="alecaddd_testimonial_author">Author Name</label>
-			<input type="text" id="alecaddd_testimonial_author" name="alecaddd_testimonial_author" class="widefat" value="<?php echo esc_attr( $name ); ?>">
+			<label class="meta-label" for="loki_testimonial_author">Author Name</label>
+			<input type="text" id="loki_testimonial_author" name="loki_testimonial_author" class="widefat" value="<?php echo esc_attr( $name ); ?>">
 		</p>
 		<p>
-			<label class="meta-label" for="alecaddd_testimonial_email">Author Email</label>
-			<input type="email" id="alecaddd_testimonial_email" name="alecaddd_testimonial_email" class="widefat" value="<?php echo esc_attr( $email ); ?>">
+			<label class="meta-label" for="loki_testimonial_email">Author Email</label>
+			<input type="email" id="loki_testimonial_email" name="loki_testimonial_email" class="widefat" value="<?php echo esc_attr( $email ); ?>">
 		</p>
 		<div class="meta-container">
-			<label class="meta-label w-50 text-left" for="alecaddd_testimonial_approved">Approved</label>
+			<label class="meta-label w-50 text-left" for="loki_testimonial_approved">Approved</label>
 			<div class="text-right w-50 inline">
-				<div class="ui-toggle inline"><input type="checkbox" id="alecaddd_testimonial_approved" name="alecaddd_testimonial_approved" value="1" <?php echo $approved ? 'checked' : ''; ?>>
-					<label for="alecaddd_testimonial_approved"><div></div></label>
+				<div class="ui-toggle inline"><input type="checkbox" id="loki_testimonial_approved" name="loki_testimonial_approved" value="1" <?php echo $approved ? 'checked' : ''; ?>>
+					<label for="loki_testimonial_approved"><div></div></label>
 				</div>
 			</div>
 		</div>
 		<div class="meta-container">
-			<label class="meta-label w-50 text-left" for="alecaddd_testimonial_featured">Featured</label>
+			<label class="meta-label w-50 text-left" for="loki_testimonial_featured">Featured</label>
 			<div class="text-right w-50 inline">
-				<div class="ui-toggle inline"><input type="checkbox" id="alecaddd_testimonial_featured" name="alecaddd_testimonial_featured" value="1" <?php echo $featured ? 'checked' : ''; ?>>
-					<label for="alecaddd_testimonial_featured"><div></div></label>
+				<div class="ui-toggle inline"><input type="checkbox" id="loki_testimonial_featured" name="loki_testimonial_featured" value="1" <?php echo $featured ? 'checked' : ''; ?>>
+					<label for="loki_testimonial_featured"><div></div></label>
 				</div>
 			</div>
 		</div>
@@ -193,12 +193,12 @@ class TestimonialController extends BaseController
 
 	public function save_meta_box($post_id)
 	{
-		if (! isset($_POST['alecaddd_testimonial_nonce'])) {
+		if (! isset($_POST['loki_testimonial_nonce'])) {
 			return $post_id;
 		}
 
-		$nonce = $_POST['alecaddd_testimonial_nonce'];
-		if (! wp_verify_nonce( $nonce, 'alecaddd_testimonial' )) {
+		$nonce = $_POST['loki_testimonial_nonce'];
+		if (! wp_verify_nonce( $nonce, 'loki_testimonial' )) {
 			return $post_id;
 		}
 
@@ -211,12 +211,12 @@ class TestimonialController extends BaseController
 		}
 
 		$data = array(
-			'name' => sanitize_text_field( $_POST['alecaddd_testimonial_author'] ),
-			'email' => sanitize_email( $_POST['alecaddd_testimonial_email'] ),
-			'approved' => isset($_POST['alecaddd_testimonial_approved']) ? 1 : 0,
-			'featured' => isset($_POST['alecaddd_testimonial_featured']) ? 1 : 0,
+			'name' => sanitize_text_field( $_POST['loki_testimonial_author'] ),
+			'email' => sanitize_email( $_POST['loki_testimonial_email'] ),
+			'approved' => isset($_POST['loki_testimonial_approved']) ? 1 : 0,
+			'featured' => isset($_POST['loki_testimonial_featured']) ? 1 : 0,
 		);
-		update_post_meta( $post_id, '_alecaddd_testimonial_key', $data );
+		update_post_meta( $post_id, '_loki_testimonial_key', $data );
 	}
 
 	public function set_custom_columns($columns)
@@ -236,7 +236,7 @@ class TestimonialController extends BaseController
 
 	public function set_custom_columns_data($column, $post_id)
 	{
-		$data = get_post_meta( $post_id, '_alecaddd_testimonial_key', true );
+		$data = get_post_meta( $post_id, '_loki_testimonial_key', true );
 		$name = isset($data['name']) ? $data['name'] : '';
 		$email = isset($data['email']) ? $data['email'] : '';
 		$approved = isset($data['approved']) && $data['approved'] === 1 ? '<strong>YES</strong>' : 'NO';
