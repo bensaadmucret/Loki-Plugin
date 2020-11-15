@@ -1,0 +1,14 @@
+{
+    "name": "ben/loki-plugin",
+    "authors": [
+        {
+            "name": "Mohammed Bensaad",
+            "email": "bensaadmucret@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {"Inc\\": "./inc"}
+    }
+}
