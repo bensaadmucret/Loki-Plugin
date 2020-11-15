@@ -7,8 +7,13 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "cmb2/cmb2": "9999999-dev"
+    },
     "autoload": {
         "psr-4": {"Inc\\": "./inc"}
+    },
+    "require-dev": {
+        "symfony/var-dumper": "9999999-dev"
     }
 }
