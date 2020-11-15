@@ -5,7 +5,7 @@
 /*
 Plugin Name: Loki Plugin
 Plugin URI: https://fr.linkedin.com/in/mohammed-bensaad-developpeur
-Description: This is my first attempt on writing a custom Plugin for this amazing tutorial series.
+Description: plugin stater.
 Version: 1.0.0
 Author: Mohammed "Ben" Bensaad
 Author URI: https://fr.linkedin.com/in/mohammed-bensaad-developpeur
