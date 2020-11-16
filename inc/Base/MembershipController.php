@@ -35,7 +35,7 @@ class MembershipController extends BaseController
 		$this->subpages = array(
 			array(
 				'parent_slug' => 'loki_plugin', 
-				'page_title' => 'Membership Manager', 
+				'page_title' => 'Membership Manager',
 				'menu_title' => 'Membership Manager', 
 				'capability' => 'manage_options', 
 				'menu_slug' => 'loki_membership', 

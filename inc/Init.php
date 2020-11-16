@@ -23,9 +23,13 @@ final class Init
 			Base\TestimonialController::class,
 			Base\TemplateController::class,
 			//Base\AuthController::class,
+            Base\OptionGestionGravity::class,
 			Base\MembershipController::class,
 			Base\ChatController::class,
-			Base\OptionMembership::class,
+            Base\UserContactChamps::class,
+            Base\GestionGravity::class,
+            Base\loginRedirectUrl::class,
+            Base\AddKeysGravity::class,
 		];
 	}
 

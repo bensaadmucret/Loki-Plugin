@@ -1,7 +1,8 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: mzb
- * Date: 16/11/2020
- * Time: 12:07
- */
+<h1> — Gravity Form: gestion des formulaires </h1>
+
+<?php  //dd($url_redirect = get_option('loki_gestion_gravity'));
+
+
+
+
+?>

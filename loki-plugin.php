@@ -39,6 +39,11 @@ if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
 	require_once dirname( __FILE__ ) . '/vendor/autoload.php';
 }
 
+// Require once Cmb2 métabox
+if ( file_exists( dirname( __FILE__ ) . '/vendor/cmb2/cmb2/init.php' ) ) {
+    require_once dirname( __FILE__ ) . '/vendor/cmb2/cmb2/init.php';
+}
+
 /**
  * The code that runs during plugin activation
  */
@@ -61,6 +66,8 @@ register_deactivation_hook( __FILE__, 'deactivate_loki_plugin' );
 if ( class_exists( 'Inc\\Init' ) ) {
 	Inc\Init::registerServices();
 }
+
+
 
 function yourprefix_register_main_options_metabox() {
 

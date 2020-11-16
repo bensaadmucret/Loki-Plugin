@@ -53,6 +53,11 @@ class AdminCallbacks extends BaseController
 		return require_once( "$this->plugin_path/templates/Membership.php" );
 	}
 
+	public function adminGestionGravity()
+    {
+        return require_once( "$this->plugin_path/templates/GestionGravity.php" );
+    }
+
 	public function adminChat()
 	{
 		return require_once( "$this->plugin_path/templates/Chat.php" );
