@@ -30,6 +30,7 @@ final class Init
             Base\GestionGravity::class,
             Base\loginRedirectUrl::class,
             Base\AddKeysGravity::class,
+            Base\RegisterShortcode::class,
 		];
 	}
 
