@@ -62,4 +62,9 @@ class AdminCallbacks extends BaseController
 	{
 		return require_once( "$this->plugin_path/templates/Chat.php" );
 	}
+
+    public function adminOptionDashboard()
+    {
+        return require_once( "$this->plugin_path/templates/OptionDashboard.php" );
+    }
 }

@@ -27,6 +27,7 @@ class Enqueue extends BaseController
 
     function add_external_scripts() {
         wp_enqueue_style( 'external_css', 'https://unpkg.com/purecss@ 2.0.3 /build/pure-min.css');
+        wp_enqueue_style( 'font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
     }
 
 }

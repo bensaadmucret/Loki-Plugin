@@ -31,6 +31,9 @@ final class Init
             Base\loginRedirectUrl::class,
             Base\AddKeysGravity::class,
             Base\RegisterShortcode::class,
+            Base\DashboardShorcode::class,
+            Base\Frontend::class,
+            Base\OptionDashboard::class,
 		];
 	}
 
