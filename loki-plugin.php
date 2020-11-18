@@ -44,6 +44,11 @@ if ( file_exists( dirname( __FILE__ ) . '/vendor/cmb2/cmb2/init.php' ) ) {
     require_once dirname( __FILE__ ) . '/vendor/cmb2/cmb2/init.php';
 }
 
+// Require Extention
+if ( file_exists( dirname( __FILE__ ) . '/extention/cmb2-admin-extension.php' ) ) {
+    require_once dirname( __FILE__ ) . '/extention/cmb2-admin-extension.php';
+}
+
 /**
  * The code that runs during plugin activation
  */

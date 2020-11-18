@@ -67,4 +67,9 @@ class AdminCallbacks extends BaseController
     {
         return require_once( "$this->plugin_path/templates/OptionDashboard.php" );
     }
+
+    public function adminStep()
+    {
+        echo "<h1>Templates Step</h1>";
+    }
 }

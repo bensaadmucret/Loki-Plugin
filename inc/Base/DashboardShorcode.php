@@ -294,15 +294,14 @@ class DashboardShorcode
     </style>
 
         <?php
-
+          dump(get_option('loki_option_dashboard'));
            $data = get_option('loki_option_dashboard');
            $titre= $data['id_gros_titre_dashboard'];
            $introduction = $data['id_introduction'];
 
+           ?>
 
-         ?>
 
-        <?php ob_start(); ?>
 
         <header class="header">
         <h1><?= $titre  ?></h1>
@@ -310,9 +309,7 @@ class DashboardShorcode
         <div class="clear-backend">
             <div class="avatar ease">
                 <div>
-                    <a href="http://www.weibo.com/518501269" target="_blank">
-                        <img class="ease" src="http://7xjot0.com1.z0.glb.clouddn.com/32-3.png" alt="">
-                    </a>
+
                 </div>
             </div>
 
@@ -494,13 +491,16 @@ class DashboardShorcode
                                 <p><strong>History:</strong> Originated in the Northern German city of Einbeck, which was a brewing center and popular exporter in the days of the Hanseatic League (14th to 17th century). Recreated in Munich starting in the 17th century. The name “bock” is based on a corruption of the name “Einbeck” in the Bavarian dialect, and was thus only used after the beer came to Munich. “Bock” also means “Ram” in German, and is often used in logos and advertisements.</p>
                             </section>
                         </div>
-
                     </div>
-
-                    <p><small>Source: <cite><a href="https://www.bjcp.org/stylecenter.php">BJCP Style Guidelines</a></cite></small></p>
                 </section>
                 <section class="tab-item-3">
                     <h1>Three</h1>
+                    <?php
+                    echo $data[ '_oembed_64500254a9ff1e49e2db726bee74940e'];
+                    echo $data[ '_oembed_672f8ebe89b24cd26fda659dc3589501'];
+                    echo $data[ '_oembed_a1a24027ee5a10e7d0fe84eb0e9381d4'];
+                    ?>
+
                 </section>
                 <section class="tab-item-4">
                     <h1>Four</h1>
@@ -526,7 +526,7 @@ class DashboardShorcode
             </div>
         </div>
 
-        <?php ob_end_flush();
+       <?php
 
 
     }

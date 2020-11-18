@@ -14,9 +14,7 @@ class OptionDashboard
         add_action( 'cmb2_init', [$this,'gestion_dashboard_options_submenu_menu' ] );
     }
 
-    /**
-     *
-     */
+
     function gestion_dashboard_options_submenu_menu() {
 
         $args = array(
@@ -49,7 +47,7 @@ class OptionDashboard
 
 
 
-        $gravity_group_id = $main_options->add_field( array(
+        $group_field_id = $main_options->add_field( array(
             'id'          => 'loki_group',
             'type'        => 'group',
             'repeatable'  => true,
@@ -62,18 +60,45 @@ class OptionDashboard
             ),
         ) );
 
-        $main_options->add_group_field( $gravity_group_id, array(
-            'name' => 'Titre',
-            'desc' => 'Entre le titre du formulaire.',
-            'id'   => 'title',
-            'type' => 'text',
+        $main_options->add_group_field( $group_field_id, array(
+            'name' => 'oEmbed',
+            'desc' => 'Enter a youtube, twitter, or instagram URL. Supports services listed at <a href="http://codex.wordpress.org/Embeds">http://codex.wordpress.org/Embeds</a>.',
+            'id'   => 'video',
+            'type' => 'oembed',
         ) );
-        $main_options->add_group_field( $gravity_group_id, array(
+        $main_options->add_group_field( $group_field_id, array(
             'name' => 'Label',
             'desc' => 'Enter the url of the post.',
             'id'   => 'label',
             'type' => 'text',
         ) );
+        // Id's for group's fields only need to be unique for the group. Prefix is not needed.
+        $main_options->add_group_field( $group_field_id, array(
+            'name' => 'Entry Title',
+            'id'   => 'title',
+            'type' => 'text',
+            // 'repeatable' => true, // Repeatable fields are supported w/in repeatable groups (for most types)
+        ) );
+
+        $main_options->add_group_field( $group_field_id, array(
+            'name' => 'Description',
+            'description' => 'Write a short description for this entry',
+            'id'   => 'description',
+            'type' => 'textarea_small',
+        ) );
+
+        $main_options->add_group_field( $group_field_id, array(
+            'name' => 'Entry Image',
+            'id'   => 'image',
+            'type' => 'file',
+        ) );
+
+        $main_options->add_group_field( $group_field_id, array(
+            'name' => 'Image Caption',
+            'id'   => 'image_caption',
+            'type' => 'text',
+        ) );
+
 
     }
 

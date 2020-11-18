@@ -31,6 +31,8 @@ class BaseController
 			'membership_manager' => 'Activate Membership Manager',
 			'chat_manager' => 'Activate Chat Manager',
             'option_dashboard_manager' => 'Activate Gestion font-end',
+            'step_manager' => 'Activate Gestion des pages étapes',
+
         ];
 	}
 

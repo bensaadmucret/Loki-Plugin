@@ -34,6 +34,7 @@ final class Init
             Base\DashboardShorcode::class,
             Base\Frontend::class,
             Base\OptionDashboard::class,
+            Base\EtapeController::class,
 		];
 	}
 
