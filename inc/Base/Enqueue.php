@@ -14,6 +14,7 @@ class Enqueue extends BaseController
 	public function register() {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
         add_action( 'wp_enqueue_scripts', [$this,'add_external_scripts'] );
+        add_action( 'wp_enqueue_scripts', [$this,'boostrap_enqueue'] );
 	}
 	
 	function enqueue() {
@@ -26,8 +27,16 @@ class Enqueue extends BaseController
 	}
 
     function add_external_scripts() {
-        wp_enqueue_style( 'external_css', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap-grid.min.css');
         wp_enqueue_style( 'font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
     }
+
+    function boostrap_enqueue() {
+        wp_register_script( 'bootstrap-js', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', array('jquery'), NULL, true );
+        wp_register_style( 'bootstrap-css', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', false, NULL, 'all' );
+
+        wp_enqueue_script( 'bootstrap-js' );
+        wp_enqueue_style( 'bootstrap-css' );
+    }
+
 
 }

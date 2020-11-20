@@ -14,7 +14,11 @@ class AddKeysGravity extends UserContactChamps{
     {
         add_action('gform_user_registration_add_option_group', [$this, 'add_custom_group'], 10, 3);
         add_filter('gform_user_registration_user_meta_options', [ $this, 'add_keys'], 10, 1);
+
     }
+
+
+
     /**
      * @param $keys
      * @return array
@@ -22,14 +26,18 @@ class AddKeysGravity extends UserContactChamps{
 
     public function add_keys($keys)
     {
-        $extra_fields = $this->get_list_champs();
+        $array = get_option('loki_gestion_gravity');
 
+        $extra_fields = $array['loki_group'];
+
+        if(is_array($extra_fields)):
         foreach ($extra_fields as  $value) {
             $keys[]= array(
                 'name'=> $value['title'],
                 'label'=>$value['label'],
                 'required'=> false);
         }
+        endif;
 
         return $keys;
     }

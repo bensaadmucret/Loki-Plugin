@@ -18,12 +18,21 @@ class TemplateController extends BaseController
 		if ( ! $this->activated( 'templates_manager' ) ) return;
 
 		$this->templates = array(
-			'page-templates/two-columns-tpl.php' => 'Two Columns Layout'
+			'page-templates/two-columns-tpl.php' => 'Two Columns Layout',
+            'page-templates/projet.php' => 'Projet Layout',
+            'page-templates/gravityformsuserregistration-login.php' => 'gravityformsuserregistration-login',
+            'page-templates/member-password-lost.php'=>'member-password-lost',
+            'page-templates/password_lost_form.php'=>'password_lost_form',
+
+
 		);
+
 
 		add_filter( 'theme_page_templates', array( $this, 'custom_template' ) );
 		add_filter( 'template_include', array( $this, 'load_template' ) );
 	}
+
+
 
 	public function custom_template( $templates )
 	{
@@ -48,6 +57,7 @@ class TemplateController extends BaseController
 				return $file;
 			}
 		}
+
 
 		$template_name = get_post_meta( $post->ID, '_wp_page_template', true );
 

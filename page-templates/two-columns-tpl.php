@@ -9,35 +9,11 @@ get_header();
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
-
-
-
-
-// 1. On définit les arguments pour définir ce que l'on souhaite récupérer
-$args = array(
-    'post_type' => 'step',
-    'posts_per_page' => 3,
-);
-
-// 2. On exécute la WP Query
-$my_query = new WP_Query( $args );
-
-// 3. On lance la boucle !
-if( $my_query->have_posts() ) : while( $my_query->have_posts() ) : $my_query->the_post();
-
-    the_title();
-    the_content();
-    the_post_thumbnail();
-    $key_1_value = get_post_meta( get_the_ID(), '_my_meta_admin', true );
-
-    if ( !empty( $key_1_value ) ) {
-        echo $key_1_value;
-    }
-
-
-
-
 ?>
+
+
+
+
     <style>
         * {
             padding: 0;
@@ -344,14 +320,12 @@ if( $my_query->have_posts() ) : while( $my_query->have_posts() ) : $my_query->th
     </style>
 <div class="container">
 		<header class="header">
-			<h1>Pure CSS3 Backend Panel</h1>
+			<h1>Dashboard</h1>
 		</header>
 		<div class="clear-backend">
 			<div class="avatar ease">
 				<div>
-					<a href="http://www.weibo.com/518501269" target="_blank">
-						<img class="ease" src="http://7xjot0.com1.z0.glb.clouddn.com/32-3.png" alt="">
-					</a>
+
 				</div>
 			</div>
 
@@ -410,50 +384,20 @@ if( $my_query->have_posts() ) : while( $my_query->have_posts() ) : $my_query->th
 			<!-- tab-content -->
 			<div class="tab-content">
 				<section class="tab-item-1">
-					<h1>One</h1>
-                    <div class="grid">
+                <?php
+                ob_start();
 
-                        <div class="one">
-                            <?php echo $url = esc_url( get_post_meta( get_the_ID(), '_video', 1 ) );?>
-                            <?php echo wp_oembed_get( $url ); ?>
-                        </div>
-                        <div class="two">
-                           <?php  echo wp_oembed_get( $url ); ?>
-                        </div>
-                        <div class="three">
-                            <?php  echo wp_oembed_get( $url ); ?>
-                        </div>
+                //require_once  DIRECTORY_SEPARATOR . 'projet.php';
+                include  'projet.php';
 
+              ob_end_flush();
 
-                    </div>
+                ?>
 
 				</section>
 				<section class="tab-item-2">
 					<h1>Two</h1>
-
-
-                        <div class="row">
-                            <div class="col-6 col-md-3">>
-                                <?php  $url = esc_url( get_post_meta( get_the_ID(), '_video', 1 ) );
-                               echo wp_oembed_get( $url );?>
-                            </div>
-                            <div class="col-6 col-md-3">>
-                                <?php  $url = esc_url( get_post_meta( get_the_ID(), '_video', 1 ) );
-                                echo wp_oembed_get( $url );?>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">
-                                <?php  $url = esc_url( get_post_meta( get_the_ID(), '_video', 1 ) );
-                                echo wp_oembed_get( $url );?>
-                            </div>
-                        </div>
-
-
-
-
-
-				</section>
+                </section>
 				<section class="tab-item-3">
 					<h1>Three</h1>
 				</section>
@@ -484,17 +428,14 @@ if( $my_query->have_posts() ) : while( $my_query->have_posts() ) : $my_query->th
 	<footer class="footer">
 		<div class="container">
 			<div class="copyright">
-				<span>Designed By</span>
-				<a href="http://www.weibo.com/518501269" target="_blank">@Clear</a>
-				<a href="https://github.com/SoClear" target="_blank">Github</a>
-				<a href="http://www.cleardesign.me" target="_blank">WebSite</a>
+
 			</div>
 		</div>
 	</footer>
 <?php
-    wp_reset_postdata();
-endwhile;
-endif;
+
+
+
 
  get_footer();
 
