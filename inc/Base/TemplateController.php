@@ -20,11 +20,6 @@ class TemplateController extends BaseController
 		$this->templates = array(
 			'page-templates/two-columns-tpl.php' => 'Two Columns Layout',
             'page-templates/projet.php' => 'Projet Layout',
-            'page-templates/gravityformsuserregistration-login.php' => 'gravityformsuserregistration-login',
-            'page-templates/member-password-lost.php'=>'member-password-lost',
-            'page-templates/password_lost_form.php'=>'password_lost_form',
-
-
 		);
 
 
