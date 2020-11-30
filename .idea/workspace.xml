@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6b22faf6-c7c9-4ae8-b3d0-42d2b5db7194" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/blade.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/mzb.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/functions.php" afterPath="$PROJECT_DIR$/functions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/Base/OptionDashboard.php" afterPath="$PROJECT_DIR$/inc/Base/OptionDashboard.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loki-plugin.php" afterPath="$PROJECT_DIR$/loki-plugin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/render_account_info_form.php" afterPath="$PROJECT_DIR$/templates/render_account_info_form.php" />
-    </list>
+    <list default="true" id="6b22faf6-c7c9-4ae8-b3d0-42d2b5db7194" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -354,12 +345,12 @@
       <workItem from="1606291700583" duration="78015000" />
       <workItem from="1606464185516" duration="27237000" />
       <workItem from="1606495605140" duration="523000" />
-      <workItem from="1606504379066" duration="9208000" />
+      <workItem from="1606504379066" duration="9768000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="289489000" />
+    <option name="totallyTimeSpent" value="290049000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
