@@ -70,9 +70,6 @@ foreach ($arr['loki_group'] as $key => $value):
 endforeach;
 ?>
 
-<?php dump($arr['loki_group']); ?>
-<?php  ?>
-<?php //dump($value['lock_radio']); //dump($arr['loki_group'][1]['validation_radio']); ?>
 
 <section class="py-5 header">
     <div class="container py-4">
@@ -186,7 +183,7 @@ endforeach;
 
     (function(){
         jQuery(document).ready(function($) {
-            var time = "08:30:10",
+            let time = "08:30:10",
                 parts = time.split(':'),
                 hours = +parts[0],
                 minutes = +parts[1],
@@ -197,7 +194,7 @@ endforeach;
                 return (num<10)? ("0"+num):num;
             }
 
-            var timer = setInterval(function(){
+            let timer = setInterval(function(){
                 seconds--;
                 if(seconds == -1) {
                     seconds = 59;
