@@ -101,7 +101,6 @@ endforeach;
                             <?php //dump($value['lock_radio']); ?>
 
                         <?php if ( $value['lock_radio'] == false || get_the_author_meta( str_replace(' ', '', $value['title']) ) == str_replace(' ', '', $value['title']). " CONFIRMEE " ): ?>
-
                         <a class="nav-link mb-3 p-3 shadow" id="v-pills-profile-tab" data-toggle="pill" href="#<?= str_replace(' ', '', $value['title']);?>" role="tab" aria-controls="v-pills-profile" aria-selected="false">
                             <i class="fa fa-check mr-2"></i>
                             <span class="font-weight-bold small text-uppercase"><?= $value['title'];  ?></span>
@@ -145,7 +144,12 @@ endforeach;
                         <div class="tab-pane fade shadow rounded bg-white p-5" id="<?= str_replace(' ', '', $value['title']);?>" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                             <h4 class="font-italic mb-4">Bookings</h4>
                             <p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            <?php if($value['validation_radio']): ?>
+                            if(is_array($value['description'])){?>
+                            <?php  for ($i = 0, $iMax = count($value['description']); $i < $iMax; $i++ ): ?>
+                                <?php echo do_shortcode($value['description'][$i]); ?>
+                            <?php endfor;?>
+                            <?php }
+                            if($value['validation_radio']): ?>
                                 <form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" >
@@ -159,7 +163,6 @@ endforeach;
                                     <button type="submit" class="btn btn-primary go">validation</button>
                                 </form>
                             <?php endif; ?>
-
                         </div>
 
 
