@@ -72,76 +72,7 @@ if ( class_exists( 'Inc\\Init' ) ) {
 	Inc\Init::registerServices();
 }
 
-
-/**
- * @return bool
- */
-function remove_admin_bar()
-{
-    if (current_user_can('administrator')) {
-        return true;
-    }
-    return false;
-}
-
-add_filter('show_admin_bar', 'remove_admin_bar', PHP_INT_MAX);
-
-
-
-
-/**
- * A CMB2 options-page display callback override which adds tab navigation among
- * CMB2 options pages which share this same display callback.
- *
- * @param CMB2_Options_Hookup $cmb_options The CMB2_Options_Hookup object.
- */
-function yourprefix_options_display_with_tabs( $cmb_options ) {
-	$tabs = yourprefix_options_page_tabs( $cmb_options );
-	?>
-	<div class="wrap cmb2-options-page option-<?php echo $cmb_options->option_key; ?>">
-		<?php if ( get_admin_page_title() ) : ?>
-			<h2><?php echo wp_kses_post( get_admin_page_title() ); ?></h2>
-		<?php endif; ?>
-		<h2 class="nav-tab-wrapper">
-			<?php foreach ( $tabs as $option_key => $tab_title ) : ?>
-				<a class="nav-tab<?php if ( isset( $_GET['page'] ) && $option_key === $_GET['page'] ) : ?> nav-tab-active<?php endif; ?>" href="<?php menu_page_url( $option_key ); ?>"><?php echo wp_kses_post( $tab_title ); ?></a>
-			<?php endforeach; ?>
-		</h2>
-		<form class="cmb-form" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="POST" id="<?php echo $cmb_options->cmb->cmb_id; ?>" enctype="multipart/form-data" encoding="multipart/form-data">
-			<input type="hidden" name="action" value="<?php echo esc_attr( $cmb_options->option_key ); ?>">
-			<?php $cmb_options->options_page_metabox(); ?>
-			<?php submit_button( esc_attr( $cmb_options->cmb->prop( 'save_button' ) ), 'primary', 'submit-cmb' ); ?>
-		</form>
-	</div>
-	<?php
-}
-
-/**
- * Gets navigation tabs array for CMB2 options pages which share the given
- * display_cb param.
- *
- * @param CMB2_Options_Hookup $cmb_options The CMB2_Options_Hookup object.
- *
- * @return array Array of tab information.
- */
-function yourprefix_options_page_tabs( $cmb_options ) {
-	$tab_group = $cmb_options->cmb->prop( 'tab_group' );
-	$tabs      = array();
-
-	foreach ( CMB2_Boxes::get_all() as $cmb_id => $cmb ) {
-		if ( $tab_group === $cmb->prop( 'tab_group' ) ) {
-			$tabs[ $cmb->options_page_keys()[0] ] = $cmb->prop( 'tab_title' )
-				? $cmb->prop( 'tab_title' )
-				: $cmb->prop( 'title' );
-		}
-	}
-
-	return $tabs;
-}
-
-
-
-
+require_once __DIR__ .'./functions.php';
 
 class Personalize_Login_Plugin {
 
@@ -177,20 +108,140 @@ class Personalize_Login_Plugin {
         add_action( 'wp_print_footer_scripts', array( $this, 'add_captcha_js_to_footer' ) );
         add_filter( 'admin_init' , array( $this, 'register_settings_fields' ) );
 
+
         // Shortcodes
         add_shortcode( 'custom-login-form', array( $this, 'render_login_form' ) );
         add_shortcode( 'custom-register-form', array( $this, 'render_register_form' ) );
         add_shortcode( 'custom-password-lost-form', array( $this, 'render_password_lost_form' ) );
         add_shortcode( 'custom-password-reset-form', array( $this, 'render_password_reset_form' ) );
         add_shortcode( 'account-info', array( $this, 'render_account_info_form' ) );
+        add_action('show_user_profile', array( $this, 'mysite_show_extra_profile_fields') );
+        add_action('edit_user_profile', array( $this, 'mysite_show_extra_profile_fields') );
+        add_action('personal_options_update',array( $this,  'mysite_save_extra_profile_fields') );
+        add_action('edit_user_profile_update',array( $this,  'mysite_save_extra_profile_fields') );
+        add_action('manage_users_custom_column', array( $this,  'mysite_custom_columns'), 15, 3 );
+        add_filter('manage_users_columns', array( $this, 'mysite_columns'), 15, 1 );
+        add_action( 'admin_post_my-action', array( $this, 'my_save_form_function') );
+        add_action( 'admin_post_nopriv_my-action',array( $this, 'my_save_form_function' ) );
+
+
+
+
     }
 
 
+
+
+
+    /**
+     * @return string
+     */
     public function render_account_info_form(){
 
-        return do_shortcode(' [gravityform id="2" title="false" description="false" ajax="true" tabindex="49" field_values="check=First Choice,Second Choice"] ');
+        $attributes['lock'] = $this->is_padlock();
+        $attributes['confirmed'] = $this->stage_confirmed();
 
+
+        return $this->get_template_html( '/Dashboard-main/index', $attributes );
     }
+
+    public function mysite_custom_define() {
+        $arr = get_option('loki_option_dashboard');
+        $custom_meta_fields = array();
+        if(is_array( $arr['loki_group'])):
+        foreach ($arr['loki_group'] as $value):
+        $key= $value['title'];
+        $custom_meta_fields[$key] = $key;
+        endforeach;
+        endif;
+        return $custom_meta_fields;
+    }
+    public function mysite_columns($defaults) {
+        $meta_number = 0;
+        $custom_meta_fields = $this->mysite_custom_define();
+        foreach ($custom_meta_fields as $meta_field_name => $meta_disp_name) {
+            $meta_number++;
+            $defaults[('mysite-usercolumn-' . $meta_number . '')] = __($meta_disp_name, 'user-column');
+        }
+        return $defaults;
+    }
+
+    public function mysite_custom_columns($value, $column_name, $id) {
+        $meta_number = 0;
+        $custom_meta_fields = $this->mysite_custom_define();
+        foreach ($custom_meta_fields as $meta_field_name => $meta_disp_name) {
+            $meta_number++;
+            if( $column_name == ('mysite-usercolumn-' . $meta_number . '') ) {
+                return get_the_author_meta($meta_field_name, $id );
+            }
+        }
+    }
+    public function mysite_show_extra_profile_fields($user) {
+        print('<h3>Parcous utilisateur</h3>');
+
+        print('<table class="form-table">');
+
+        $meta_number = 0;
+        $custom_meta_fields = $this->mysite_custom_define();
+        foreach ($custom_meta_fields as $meta_field_name => $meta_disp_name) {
+            $meta_number++;
+            print('<tr>');
+            print('<th><label for="' . $meta_field_name . '">' . $meta_disp_name . '</label></th>');
+            print('<td>');
+            print('<input type="text" name="' . $meta_field_name . '" id="' . $meta_field_name . '" value="' . esc_attr( get_the_author_meta($meta_field_name, $user->ID ) ) . '" class="regular-text" /><br />');
+            print('<span class="description"></span>');
+            print('</td>');
+            print('</tr>');
+        }
+        print('</table>');
+    }
+
+    public function mysite_save_extra_profile_fields($user_id) {
+
+        if (!current_user_can('edit_user', $user_id))
+            return false;
+
+        $meta_number = 0;
+
+        $custom_meta_fields = $this->mysite_custom_define();
+        foreach ($custom_meta_fields as $meta_field_name => $meta_disp_name) {
+            $meta_number++;
+            update_user_meta( $user_id, $meta_field_name, $_POST[$meta_field_name] );
+        }
+    }
+
+
+
+
+    /**
+     * @return string
+     */
+    private function is_padlock(){
+        $arr = get_option('loki_option_dashboard');
+
+        if( $arr['loki_group']):
+            foreach ($arr['loki_group'] as $value):
+            if($value['lock_radio']){
+            return '<i class="fa fa-lock" aria-hidden="true" style="padding-right: 10px;"></i>';
+            }else{
+            return '<i class="fa fa-unlock-alt" aria-hidden="true"style="padding-right: 10px;"></i>';
+            }
+            endforeach;
+        endif;
+    }
+
+    /**
+     * @return string
+     */
+    public function stage_confirmed(){
+        ob_start();?>
+
+       <?php $content = ob_get_contents();
+        ob_end_clean();
+        return $content;
+    }
+
+
 
     /**
      * Plugin activation hook.
@@ -414,7 +465,7 @@ class Personalize_Login_Plugin {
         $attributes = shortcode_atts( $default_attributes, $attributes );
 
         if ( is_user_logged_in() ) {
-            return __( 'You are already signed in.', 'personalize-login' );
+            return __( 'Vous êtes déjà connecté.', 'personalize-login' );
         }
 
         // Pass the redirect parameter to the WordPress login functionality: by default,
@@ -740,6 +791,41 @@ class Personalize_Login_Plugin {
         $msg .= __( 'Merci!!', 'personalize-login' ) . "\r\n";
 
         return $msg;
+    }
+
+
+
+    public function my_save_form_function() {
+
+        if ( ! empty( $_POST['_wp_http_referer'] ) ) {
+            $form_url = esc_url_raw( wp_unslash( $_POST['_wp_http_referer'] ) );
+        } else {
+            $form_url = home_url('/' );
+        }
+        if ( isset( $_POST['action'] )
+            && wp_verify_nonce(
+                sanitize_text_field( wp_unslash( $_POST['validation'] ) ),
+                'update-user'
+            )
+        ) {
+            $_POST['prodId'];
+            update_user_meta( get_current_user_id(), $_POST['prodId'] , $_POST['prodId']. " CONFIRMEE " );
+
+            //All  works fine ?
+            wp_safe_redirect(
+                esc_url_raw(
+                    add_query_arg( 'my_status', 'success', $form_url )
+                )
+            );
+            exit();
+        } else {
+            wp_safe_redirect(
+                esc_url_raw(
+                    add_query_arg( 'my_status', 'error', $form_url )
+                )
+            );
+            exit();
+        }
     }
 
 
