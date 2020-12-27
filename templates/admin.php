@@ -22,11 +22,10 @@
 		</div>
 
 		<div id="tab-2" class="tab-pane">
-			<h3>Updates</h3>
+			<h3>
+                liste des shortcodes
+            </h3>
 		</div>
 
-		<div id="tab-3" class="tab-pane">
-			<h3>About</h3>
-		</div>
 	</div>
 </div>
