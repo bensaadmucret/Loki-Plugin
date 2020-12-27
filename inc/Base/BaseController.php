@@ -29,7 +29,6 @@ class BaseController
 			'login_manager' => 'Activate Ajax Login/Signup',
 			'gestion_gravity_manager' => 'Activate Gestions des Formulaires',
 			'membership_manager' => 'Activate Membership Manager',
-			'chat_manager' => 'Activate Chat Manager',
             'option_dashboard_manager' => 'Activate Gestion font-end',
             'step_manager' => 'Activate Gestion des pages étapes',
 
