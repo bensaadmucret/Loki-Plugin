@@ -1,26 +1,27 @@
+
 <style>
 
-    /*
+ /*
  *
  * ==========================================
  * CUSTOM UTIL CLASSES
  * ==========================================
  */
-    .nav-pills-custom .nav-link {
+    .nav-pills-custom .nav-link-cdn {
         color: #aaa;
-        background: #fff;
+       background: #fff
         position: relative;
     }
 
-    .nav-pills-custom .nav-link.active {
-        color: #45b649;
-        background: #fff;
+    .nav-pills-custom .nav-link-cdn.active {
+        color: #ffffff;
+        background: background-color: rgba(239, 246, 255, .5);
     }
 
 
     /* Add indicator arrow for the active tab */
     @media (min-width: 992px) {
-        .nav-pills-custom .nav-link::before {
+        .nav-pills-custom .nav-link-cdn::before {
             content: '';
             display: block;
             border-top: 8px solid transparent;
@@ -34,7 +35,7 @@
         }
     }
 
-    .nav-pills-custom .nav-link.active::before {
+    .nav-pills-custom .nav-link-cdn.active::before {
         opacity: 1;
     }
 
@@ -61,8 +62,12 @@
 </style>
 
 <?php $arr = get_option('loki_option_dashboard');
+
 foreach ($arr['loki_group'] as $key => $value):
-    if ( get_the_author_meta( $value['title']) == $value['title']. " CONFIRMEE "):
+$meta = $value['title'];
+$meta_author = get_the_author_meta($meta, get_current_user_id());
+
+    if ( $meta_author == $value['title']. " CONFIRMEE "):		
         $key++;
         $arr['loki_group'][$key]['lock_radio']="0";
         $id = get_the_ID();
@@ -71,44 +76,35 @@ endforeach;
 ?>
 
 
+
 <section class="py-5 header">
     <div class="container py-4">
         <header class="text-center mb-5 pb-5 text-white">
-            <h1 class="display-4">Bootstrap vertical tabs</h1>
-            <p class="font-italic mb-1">Making advantage of Bootstrap 4 components, easily build an awesome tabbed interface.</p>
-            <p class="font-italic">Snippet by
-                <a class="text-white" href="https://bootstrapious.com/">
-                    <u>Bootstrapious</u>
-                </a>
-            </p>
+            <h1 class="display-4"></h1>
+            <p class="font-italic mb-1"></p>
         </header>
-
-
         <div class="row">
             <div class="col-md-3">
                 <!-- Tabs nav -->
                 <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link mb-3 p-3 shadow active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                    <a class="nav-link-cdn shadow-lg  mb-3 p-3  active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
                         <i class="fa fa-user-circle-o mr-2"></i>
-                        <span class="font-weight-bold small text-uppercase">Personal information</span></a>
+                        <span class="font-weight-bold small text-uppercase">Informations personnelles</span></a>
 
-                    <a class="nav-link mb-3 p-3 shadow" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">
+                    <a class="nav-link-cdn mb-3 p-3 shadow-lg " id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">
                         <i class="fa fa-star mr-2"></i>
-                        <span class="font-weight-bold small text-uppercase">Reviews</span></a>
-                        <?php //get_the_author_meta( $value['title'] )== $value['title']. " CONFIRMEE " ?>
+                        <span class="font-weight-bold small text-uppercase">Bienvenue</span></a>
+
                     <?php foreach ($arr['loki_group'] as  $value):?>
-
-                            <?php //dump($value['lock_radio']); ?>
-
                         <?php if ( $value['lock_radio'] == false || get_the_author_meta( str_replace(' ', '', $value['title']) ) == str_replace(' ', '', $value['title']). " CONFIRMEE " ): ?>
-                        <a class="nav-link mb-3 p-3 shadow" id="v-pills-profile-tab" data-toggle="pill" href="#<?= str_replace(' ', '', $value['title']);?>" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                        <a class="nav-link-cdn mb-3 p-3 shadow-lg " id="v-pills-profile-tab" data-toggle="pill" href="#<?= str_replace(' ', '', $value['title']);?>" role="tab" aria-controls="v-pills-profile" aria-selected="false">
                             <i class="fa fa-check mr-2"></i>
                             <span class="font-weight-bold small text-uppercase"><?= $value['title'];  ?></span>
                         </a>
                             <?php else:
 
                             ob_start();?>
-                            <a class=" disabled nav-link mb-3 p-3 shadow" id="v-pills-profile-tab" data-toggle="pill" href="#<?= str_replace(' ', '', $value['title']);?>" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                            <a class=" disabled nav-link mb-3 p-3 shadow-lg " id="v-pills-profile-tab" data-toggle="pill" href="#<?= str_replace(' ', '', $value['title']);?>" role="tab" aria-controls="v-pills-profile" aria-selected="false">
                             <i class="fa fa-lock mr-2"></i>
                             <span class="font-weight-bold small text-uppercase"><?= str_replace(' ', '', $value['title']); ?></span>
                             </a>
@@ -118,32 +114,37 @@ endforeach;
                         <?php endif; ?>
                     <?php endforeach; ?>
 
-                    <a class="nav-link mb-3 p-3 shadow" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">
-                        <i class="fa fa-check mr-2"></i>
-                        <span class="font-weight-bold small text-uppercase">Confirm booking</span></a>
+                    <a class="nav-link-cdn mb-3 p-3 shadow-lg " id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+						<i class="fab fa-product-hunt mr-2"></i>                      
+                        <span class="font-weight-bold small text-uppercase">OFFRE</span></a>
                 </div>
             </div>
-
 
             <div class="col-md-9">
                <div class="float-right" style="margin-top: -15px;"> <span id="countdown">01:30:10</span> </div>
                 <!-- Tabs content -->
                 <div class="tab-content" id="v-pills-tabContent">
-                    <div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                        <h4 class="font-italic mb-4">Personal information</h4>
-                        <p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <div class="tab-pane fade shadow-lg rounded bg-white show active p-5" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <h4 class="text-3xl mb-4">Informations personnelles</h4>
+                        <p class="mb-2"> <?php echo do_shortcode( '[gravityform id="10" title="false" description="false" ajax="true"]' ); ?> </p>
                     </div>
 
-                    <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                        <h4 class="font-italic mb-4">Reviews</h4>
-                        <p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <div class="tab-pane fade shadow-lg  rounded bg-white p-5" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                        <h4 class="font-italic mb-4"><?php echo $arr['id_gros_titre_dashboard'] ?></h4>
+						<div class="grid grid-cols-1 gap-4">
+                        <div><p class=" text-muted mb-2"><?php echo $arr['id_introduction'] ?></p></div>
+						 <p class="mb-2"><?php if(is_array($arr['id_shortcode'])){?>
+                                <?php  for ($i = 0, $iMax = count($arr['id_shortcode']); $i < $iMax; $i++ ): ?>
+                                    <?php echo do_shortcode($arr['id_shortcode'][$i]); ?>
+                                <?php endfor;?> </p>
+                            <?php }?>	
+						</div>	
                     </div>
 
                     <?php foreach ($arr['loki_group'] as $value):?>
-
-                        <div class="tab-pane fade shadow rounded bg-white p-5" id="<?= str_replace(' ', '', $value['title']);?>" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                            <h4 class="font-italic mb-4">Bookings</h4>
-                            <p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <div class="tab-pane fade shadow-lg rounded bg-white p-5" id="<?= str_replace(' ', '', $value['title']);?>" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                            <h4 class=" text-3xl mb-4"><?= $value['title'] ?></h4>
+                            <p class="text-muted mb-2"> <?= $value['id_contenu'] ?> </p>
                             <?php if(is_array($value['description'])){?>
                             <?php  for ($i = 0, $iMax = count($value['description']); $i < $iMax; $i++ ): ?>
                                 <?php echo do_shortcode($value['description'][$i]); ?>
@@ -152,8 +153,8 @@ endforeach;
                             if($value['validation_radio']): ?>
                                 <form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" >
-                                        <label class="form-check-label" for="defaultCheck1">
+                                        <input class="rounded text-pink-500" type="checkbox" value="" >
+                                        <label class="inline-flex items-center" for="defaultCheck1">
                                             <?php echo $value['texte_de_validation']; ?>
                                         </label>
                                     </div>
@@ -168,12 +169,21 @@ endforeach;
 
                     <?php endforeach; ?>
 
-                    <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                        <h4 class="font-italic mb-4">Confirm booking</h4>
-                        <p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
+                    <div class="tab-pane fade shadow-lg rounded bg-white p-5" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+						<div class="flex justify-between">  
+						<div><h2 class=" text-3xl mb-4">OFFRE</h2></div>
+						</div>	
+						
+						<div class="grid grid-cols-1 md:grid-cols-1"> 
+						
+						<div><h3 class="mb-2">L'OFFRE DIAGINBOX</h3>
+                        <p class="mb-2">.</p></div>
+						<div><h3 class="mb-2"></h3>
+                        <p class="mb-2"></p></div>
+						
+						<div><h3 class="mb-2"></h3>
+                        <p class="mb-2"></p></div>
+						 </div>
                     </div>
                 </div>
             </div>

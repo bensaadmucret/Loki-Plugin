@@ -72,7 +72,8 @@ if ( class_exists( 'Inc\\Init' ) ) {
 	Inc\Init::registerServices();
 }
 
-require_once __DIR__ .'./functions.php';
+
+require_once dirname( __FILE__ ) .'/functions.php';
 
 class Personalize_Login_Plugin {
 
@@ -123,26 +124,17 @@ class Personalize_Login_Plugin {
         add_filter('manage_users_columns', array( $this, 'mysite_columns'), 15, 1 );
         add_action( 'admin_post_my-action', array( $this, 'my_save_form_function') );
         add_action( 'admin_post_nopriv_my-action',array( $this, 'my_save_form_function' ) );
-
-
-
+		
 
     }
-
-
-
-
+	 
 
     /**
      * @return string
      */
     public function render_account_info_form(){
 
-        $attributes['lock'] = $this->is_padlock();
-        $attributes['confirmed'] = $this->stage_confirmed();
-
-
-        return $this->get_template_html( '/Dashboard-main/index', $attributes );
+        return $this->get_template_html( '/Dashboard-main/index');
     }
 
     public function mysite_custom_define() {
@@ -150,7 +142,7 @@ class Personalize_Login_Plugin {
         $custom_meta_fields = array();
         if(is_array( $arr['loki_group'])):
         foreach ($arr['loki_group'] as $value):
-        $key= $value['title'];
+        $key= $value['title'];		
         $custom_meta_fields[$key] = $key;
         endforeach;
         endif;
@@ -177,7 +169,7 @@ class Personalize_Login_Plugin {
         }
     }
     public function mysite_show_extra_profile_fields($user) {
-        print('<h3>Parcous utilisateur</h3>');
+        print('<h3>Parcours utilisateur</h3>');
 
         print('<table class="form-table">');
 
@@ -261,7 +253,7 @@ class Personalize_Login_Plugin {
             ),
             'member-register' => array(
                 'title' => __( 'Register', 'personalize-login' ),
-                'content' => '[custom-register-form]'
+                'content' => '[user-register]'
             ),
             'member-password-lost' => array(
                 'title' => __( 'Mot de passe oublié?', 'personalize-login' ),
@@ -370,7 +362,8 @@ class Personalize_Login_Plugin {
             if ( $requested_redirect_to == '' ) {
                 $redirect_url = admin_url();
             } else {
-                $redirect_url = $redirect_to;
+				 $redirect_url = home_url( 'member-account' );
+                //$redirect_url = $redirect_to;
             }
         } else {
             // Non-admin users always go to their account page after login
@@ -398,7 +391,7 @@ class Personalize_Login_Plugin {
             if ( is_user_logged_in() ) {
                 $this->redirect_logged_in_user();
             } else {
-                wp_redirect( home_url( 'member-register' ) );
+                wp_redirect( home_url( 'user-register' ) );
             }
             exit;
         }
@@ -808,6 +801,21 @@ class Personalize_Login_Plugin {
                 'update-user'
             )
         ) {
+			$user_email = get_the_author_meta( 'user_email', get_current_user_id() );
+			$author_firstname = get_the_author_meta( 'user_firstname', get_current_user_id() );
+			$author_lastname = get_the_author_meta( 'user_lastname', get_current_user_id() );
+			
+			//get_the_author_meta($meta, get_current_user_id());
+			//$author = get_userdata(post_author,  get_current_user_id());		
+			$to = 'jean-thierry.omokolo@itga.fr, mohammed.bensaad@itga.fr';
+			$subject = 'Demande diagINBOX Accès Solutione';
+			$body ="J'ai réalisé la test en ligne et souhaite maintenant avoir accès à la solution DiagINBOX</br>   
+			Non : $author_lastname  <br>
+			Prénom : $author_firstname <br>
+			Email : $user_email";
+			$headers = array('Content-Type: text/html; charset=UTF-8');
+			wp_mail( $to, $subject, $body, $headers );
+			
             $_POST['prodId'];
             update_user_meta( get_current_user_id(), $_POST['prodId'] , $_POST['prodId']. " CONFIRMEE " );
 

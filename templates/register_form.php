@@ -1,1 +1,1 @@
-<?php echo_do_shorcode('[inscription]')?>
+<?php echo do_shortcode(['user_registration']);?>

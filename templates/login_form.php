@@ -1,4 +1,4 @@
-<?php if ( true ) : ?>
+f<?php if ( true ) : ?>
 <div class="login-form-container">
 	<?php if ( $attributes['show_title'] ) : ?>
 		<h2><?php _e( 'Connexion', 'personalize-login' ); ?></h2>
@@ -24,7 +24,7 @@
 		<p class="login-info">
 			<?php
 				printf(
-					__( 'You have successfully registered to <strong>%s</strong>. We have emailed your password to the email address you entered.', 'personalize-login' ),
+					__( 'Vous vous êtes inscrit avec succès à <strong>%s</strong>. Nous avons envoyé votre mot de passe à l\'adresse e-mail que vous avez saisie.', 'personalize-login' ),
 					get_bloginfo( 'name' )
 				);
 			?>
@@ -73,7 +73,7 @@
 			</div>
 			<p class="login-submit">
                 <button type="submit" class="btn btn-primary">
-                    <input type="submit" value="<?php _e( 'Sign In', 'personalize-login' ); ?>">
+                    <input type="submit" value="<?php _e( 'Se connecter', 'personalize-login' ); ?>">
                 </button>
 			</p>
 		</form>

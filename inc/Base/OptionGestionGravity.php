@@ -22,7 +22,7 @@ class OptionGestionGravity
         $args = array(
 		'id'           => 'loki_gestion_gravity_main',
 		'object_types' => array( 'options-page' ),
-		'option_key'   => 'loki_gestion_gravity',
+        'option_key'   => 'loki_gestion_gravity',
 		'parent_slug'  =>'loki_plugin',
 		'tab_group'    => 'loki_main_options',
 		'tab_title'    => 'Gestion des fomulaires',

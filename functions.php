@@ -60,8 +60,137 @@ function remove_admin_bar()
     }
     return false;
 
-
 }
+
+add_shortcode('user-register', 'user_registration');
+function user_registration()
+{
+    if (is_user_logged_in()) {
+        ob_start();
+        echo '<div style="text-align: center;">';
+        echo '<a  href=' .  home_url( 'member-account' ).' target="_self">';
+        echo '<button class="bg-transparent hover:bg-grey text-grey-dark font-semibold hover:text-grey-dark py-2 px-4 border border-grey hover:border-transparent rounded-full mr-2">VOTRE ESPACE</button></a>';
+        echo '</div>';
+        echo '<br>';
+        echo '<div style="text-align: center;">';
+        echo '<a  href=' . wp_logout_url(get_permalink()).' target="_self">';
+        echo '<button class="bg-transparent hover:bg-grey text-grey-dark font-semibold hover:text-grey-dark py-2 px-4 border border-grey hover:border-transparent rounded-full mr-2">SE DECONNECTER</button></a>';
+        echo '</div>';
+        $out = ob_get_clean();
+        return $out;
+    } else {
+        $key = get_option("loki_gestion_gravity");
+        if ($key['id_inscription']) {
+            echo do_shortcode('[gravityform id="'.$key['id_inscription'].'" title="false" description="false"]');
+        }
+    }
+}
+
+
+
+
+
+function yourprefix_get_wysiwyg_output( $meta_key, $post_id = 0 ) {
+	global $wp_embed;
+
+	$post_id = $post_id ? $post_id : get_the_id();
+
+	$content = get_post_meta( $post_id, $meta_key, 1 );
+	$content = $wp_embed->autoembed( $content );
+	$content = $wp_embed->run_shortcode( $content );
+	$content = wpautop( $content );
+	$content = do_shortcode( $content );
+
+	return $content;
+}
+
+
+add_action( 'template_redirect', 'redirect_non_logged_users_to_specific_page' );
+function redirect_non_logged_users_to_specific_page() {
+
+    if ( !is_user_logged_in() && is_page('member-account') && $_SERVER['PHP_SELF'] != '/wp-admin/admin-ajax.php' ) {
+
+        wp_redirect( home_url('member-login') );
+        exit;
+    }
+}
+
+
+
+add_shortcode( 'query_shortcode', 'query_shortcode' );
+function query_shortcode() {
+    $args = array(
+        'post_type' => 'post',
+        'category_name' => 'introduction',
+        'posts_per_page' => 1,
+    );
+
+
+    $my_query = new WP_Query( $args );
+    ob_start();
+
+    if( $my_query->have_posts() ) : while( $my_query->have_posts() ) : $my_query->the_post();
+
+        //the_title();
+        the_content();
+        the_post_thumbnail();
+
+    endwhile;
+    endif;
+    $buffer = ob_get_contents();
+    ob_end_clean();
+
+    wp_reset_postdata();
+    return $buffer;
+}
+
+
+add_shortcode( 'bienvenue_shortcode', 'bienvenue_shortcode' );
+function bienvenue_shortcode() {
+    $args = array(
+        'post_type' => 'post',
+        'category_name' => 'bienvenue',
+        'posts_per_page' => 1,
+    );
+
+
+    $my_query = new WP_Query( $args );
+    ob_start();
+
+    if( $my_query->have_posts() ) : while( $my_query->have_posts() ) : $my_query->the_post();
+
+        //the_title();
+        the_content();
+        the_post_thumbnail();
+
+    endwhile;
+    endif;
+    $buffer = ob_get_contents();
+    ob_end_clean();
+
+    wp_reset_postdata();
+    return $buffer;
+}
+
+
+function wpr_authorNotification($post_id) {
+
+    if ( isset( $_POST['action'] )
+        && wp_verify_nonce(
+            sanitize_text_field( wp_unslash( $_POST['validation'] ) ),
+            'update-user'
+        )
+    ) {
+        $post = get_post($post_id);
+        $author = get_userdata($post->post_author);
+
+        $message = $author->display_name . ",
+                 Vient de validé l'étape !";
+            $email = "mohammed.bensaad@itga.fr";
+        wp_mail( $email, "validation effectuée", $message);
+    }
+}
+add_action('pending_to_publish', 'wpr_authorNotification');
 
 
 
